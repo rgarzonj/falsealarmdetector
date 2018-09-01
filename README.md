@@ -1,5 +1,5 @@
 # Improving movement detections in WIFI Outdoor cameras
-I am using this code with an outdoor ieGeek WIFI camera to filter false movement detection emails. My camera sends an email every time a movement is detected but most of the times there is no interest in the picture. This code filters the emails and re-sends back only the emails that contain a picture where a person is detected by YOLOv1 neural network.
+This code is used with an outdoor ieGeek WIFI camera to filter false movement detection emails. My camera sends an email every time a movement is detected but most of the times there is no interest in the picture. This code filters the emails and re-sends back only the emails that contain a picture where a person is detected by YOLOv1 neural network.
 
 This code does the following:
 - Downloads emails from a mailbox using POP3.
