@@ -14,11 +14,17 @@ How to use this with your own WIFI camera (only for testing purposes):
 - Configure your camera to send emails to the address 'incoming_at_lifteye.es'.
 - You will receive an email only when a person is found in the picture captured by your camera.
 
+## How to use the code
+- Checkout the code.
+- Install the required packages (see requirements.txt)
+- Configure the POP3 and SMTP settings in MailboxSettings.py and SmtpSettings.py
+- Run the script run_check_false_alarms.sh 
+
 ## Ideas or comments more than welcome
 This service is provided only for testing purposes.
-Contact us at support@tamedbytes.com
+Contact us at support_at_tamedbytes.com
 
-### TODOs
+## TODOs
  - Document how to use the code (requires your own mail server).
  - Make YOLO detection more visible by highlighting the detected area.
  - Improve YOLO detection by testing different parts of the picture received.
