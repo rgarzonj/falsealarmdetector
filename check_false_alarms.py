@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+
 # -*- coding: utf-8 -*-
 """
 Created on Thu Aug 30 09:59:21 2018
@@ -35,6 +36,9 @@ def main():
     if (numMails>0):
         yolo = YoloClassifier()
     #For every email
+    if (numMails>5):
+        numMails = 5
+        logging.info('Only 5 emails will be checked in this execution.')
     for i in range(numMails):
         #Get the pictures
         logging.info('**** Checking email with ID %i ****',i)

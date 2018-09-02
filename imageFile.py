@@ -59,7 +59,6 @@ class ImageFile:
         #Check if 
         candidates = []
         h,w,c = self.getImageSize()
-        print (h,w,c)
         y1 = 0
         y2 = YOLO_H
         i = 0
