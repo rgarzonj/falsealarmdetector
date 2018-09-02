@@ -27,5 +27,4 @@ Contact us at support_at_tamedbytes.com
 ## TODOs
  - Document how to use the code (requires your own mail server).
  - Make YOLO detection more visible by highlighting the detected area.
- - Improve YOLO detection by testing different parts of the picture received.
  - Add other objects like cars or pets.

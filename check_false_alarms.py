@@ -46,7 +46,7 @@ def main():
             #For every image, call Yolo try to detect a person
             for oneImage in images:
                 logging.info('Checking image %s',oneImage)
-                if (yolo.findPersonInPicture(ImageFile(oneImage))==True):
+                if (yolo.findPersonInPictureWithCandidates(ImageFile(oneImage))==True):
                     logging.info('Found person in picture %s',oneImage)
                     #Send email to notify there is a real alert
                     #Prepare the contents of the alert

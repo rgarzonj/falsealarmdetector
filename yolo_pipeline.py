@@ -5,8 +5,9 @@ import cv2
 import logging
 
 import os
+import cv2
+from imageFile import ImageFile
 
-#TODO Try different parts of the image to improve YOLO detection
 
 class YoloClassifier:
     #w_img = 1280
@@ -31,6 +32,49 @@ class YoloClassifier:
 
     def __init__(self):
         self._build_networks()
+        
+    def draw_result(self, img, result):
+        for i in range(len(result)):
+            x = int(result[i][1])
+            y = int(result[i][2])
+            w = int(result[i][3] / 2)
+            h = int(result[i][4] / 2)
+            cv2.rectangle(img, (x - w, y - h), (x + w, y + h), (0, 255, 0), 2)
+            cv2.rectangle(img, (x - w, y - h - 20),
+                          (x + w, y - h), (125, 125, 125), -1)
+            lineType = cv2.LINE_AA if cv2.__version__ > '3' else cv2.CV_AA
+            cv2.putText(
+                img, result[i][0] + ' : %.2f' % result[i][5],
+                (x - w + 5, y - h - 7), cv2.FONT_HERSHEY_SIMPLEX, 0.5,
+                (0, 0, 0), 1, lineType)
+        return img
+    
+    def findEntitiesInPicture(self,theImage):
+        logging.info("YoloClassifier: Searching for entities in picture %s", theImage.getFilename())
+        yoloResult = self._detect_from_cvmat(theImage.getMatplotlibImage())
+        logging.info('YoloClassifier: Number of entities found %s' , str(len(yoloResult)))
+        logging.info('YoloClassifier: Detected entities %s', self._getDetectedEntities(yoloResult))
+        
+        return yoloResult
+        
+    def findPersonInPictureWithCandidates(self,theImage):
+        candidates = theImage.createYoloCandidates()
+        i = 0
+        for oneCandidate in candidates:            
+            logging.info("YoloClassifier: Searching for person in picture %s candidate %s", theImage.getFilename(),str(i))
+            filename = 'candidate_'+str(i)+'.jpg'
+            cv2.imwrite(filename,oneCandidate)
+            theImageCandidate = ImageFile(filename)
+            yoloResult = self._detect_from_cvmat(theImageCandidate.getMatplotlibImage())
+            logging.info('YoloClassifier: Number of entities found %s' , str(len(yoloResult)))
+            logging.info('YoloClassifier: Detected entities %s', self._getDetectedEntities(yoloResult))
+                        
+            for item in yoloResult:
+                if item[0] == "person":
+#                    cv2.imwrite('goodcandidate' + str(i) + '.jpg',oneCandidate)
+                    return (True)
+            i = i +1
+        return False
     
     def findPersonInPicture(self,theImage):
         logging.info("YoloClassifier: Searching for person in picture %s", theImage.getFilename())
@@ -43,10 +87,7 @@ class YoloClassifier:
               return (True)
         
         return False
-#            size = item[3]*item[4]
-#            if size > foundsize:
-#              foundcar = item
-#              foundsize = size
+
   
     def _build_networks(self):
         logging.info("YoloClassifier: Building YOLO_small graph...")

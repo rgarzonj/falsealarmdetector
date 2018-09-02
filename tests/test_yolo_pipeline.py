@@ -10,8 +10,6 @@ import unittest
 from imageFile import ImageFile
 from yolo_pipeline import YoloClassifier
 
-import os
-
 
 class Testr(unittest.TestCase):
         
@@ -39,6 +37,29 @@ class Testr(unittest.TestCase):
         else:
             weights_file = os.path.join(cwd,'yolo/YOLO_small.ckpt')
         self.assertTrue(os.path.isfile(os.path.isfile(weights_file)))
+
+    def test_drawresult(self):
+        self.image_with_person = ImageFile('./images/person.jpg')
+        yoloc = YoloClassifier()
+        yoloResult = yoloc.findEntitiesInPicture(self.image_with_person)
+        img = self.image_with_person.getImage()
+        newImg = yoloc.draw_result(img,yoloResult)
+        self.assertTrue (newImg.shape[0]==424)
+        self.assertTrue (newImg.shape[1]==640)
+        self.assertTrue (newImg.shape[2]==3)
+        
+    def test_findEntitiesInPicture(self):
+        self.image_with_person = ImageFile('./images/person.jpg')
+        res = YoloClassifier().findEntitiesInPicture(self.image_with_person)
+        self.assertTrue(res[0][0],'person')
+#        
+
+    def test_findPersonInPictureWithCandidates(self):
+        self.image_with_person = ImageFile('./images/image_with_person.jpg')
+        res = YoloClassifier().findPersonInPictureWithCandidates(self.image_with_person)
+        self.assertTrue(res)
+        
+        
         
 if __name__ == '__main__':
     unittest.main()
