@@ -5,7 +5,6 @@ import cv2
 import logging
 
 import os
-import cv2
 from imageFile import ImageFile
 
 

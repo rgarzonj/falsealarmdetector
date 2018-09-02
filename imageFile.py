@@ -69,7 +69,7 @@ class ImageFile:
             while(x2<w):
                 crop_img = self.image[y1:y2, x1:x2]
                 candidates.append(crop_img)
-                filename = 'candidate_'+str(i)+'.jpg'
+                #filename = 'candidate_'+str(i)+'.jpg'
                 #cv2.imwrite(filename,crop_img)
                 i = i + 1
                 x1 = x1 + INTERVAL

@@ -5,7 +5,7 @@ Created on Fri Aug 31 22:29:54 2018
 
 @author: rgarzon
 """
-
+import os
 import unittest
 from imageFile import ImageFile
 from yolo_pipeline import YoloClassifier
