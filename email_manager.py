@@ -96,19 +96,19 @@ class EmailManager:
         Returns:
             The number of emails in the mailbox.
         """
-        M = self._connectPOP3Mailbox(mailboxSettings)
+        M = self._connectPOP3SSLMailbox(mailboxSettings)
         numMessages = len(M.list()[1]) 
         M.quit()
         return numMessages
 
     def deleteEmail(self,which,mailboxSettings):
-        M = self._connectPOP3Mailbox(mailboxSettings)
+        M = self._connectPOP3SSLMailbox(mailboxSettings)
         logging.info('Deleting email with ID %d',which+1)
         M.dele(which+1)
         M.quit()
         
     def multipleDeleteEmail(self,emailsList,mailboxSettings):
-        M = self._connectPOP3Mailbox(mailboxSettings)
+        M = self._connectPOP3SSLMailbox(mailboxSettings)
         for which in emailsList:
             M.dele(which+1)
             logging.info('Deleting email with ID %d',which+1)
@@ -158,6 +158,19 @@ class EmailManager:
         M.pass_(mailboxSettings.getPop3Pwd())
         return M
     
+    def _connectPOP3SSLMailbox (self,mailboxSettings):
+        """    
+        Opens POP3 SSL connection according to the mailboxSettings
+        Args:
+            mailboxSettings: POP3 Server, login, pwd 
+        Returns:
+            poplib.POP3 object with the connection opened, quit() should be called using it
+        """
+        M = poplib.POP3_SSL(mailboxSettings.getPop3Server(),mailboxSettings.getPop3SSLPort())
+        M.user(mailboxSettings.getPop3Login())
+        M.pass_(mailboxSettings.getPop3Pwd())
+        return M
+    
     def getInfoFromEmail(self,which,mailboxSettings):
         #Returns the information from an email
         """    
@@ -169,7 +182,7 @@ class EmailManager:
         Returns:
             EmailEntity object with the information from the email.
         """
-        M = self._connectPOP3Mailbox(mailboxSettings)
+        M = self._connectPOP3SSLMailbox(mailboxSettings)
         attachments = []
         parserObj = parser.FeedParser()
         for msg in M.retr(which+1)[1]:
