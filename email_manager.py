@@ -74,7 +74,7 @@ class EmailManager:
                 msg.attach(img)
 
         # Send the email via our own SMTP server.
-        s = smtplib.SMTP(smtpSettings.getSMTPServer())
+        s = smtplib.SMTP(smtpSettings.getSMTPServer(),smtpSettings.getSMTPPort())
         if (smtpSettings.getSMTPStartTLS()==True):        
             s.starttls()    
         try:
