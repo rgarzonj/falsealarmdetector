@@ -28,3 +28,9 @@ Contact us at support_at_tamedbytes.com
  - Document how to use the code (requires your own mail server).
  - Make YOLO detection more visible by highlighting the detected area.
  - Add other objects like cars or pets.
+
+### Gmail camera configuration
+smtp.gmai.com
+TLS
+Authentication: yes
+Port 465

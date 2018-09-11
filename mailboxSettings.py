@@ -6,10 +6,10 @@ Created on Fri Aug 31 08:16:17 2018
 @author: rgarzon
 """
 
-POP3_SERVER = "YOUR_POP3_SERVER"
-POP3_PORT = ""
-POP3_LOGIN = "YOUR_POP3_LOGIN"
-POP3_PWD = "YOUR_POP3_PASSWORD"
+POP3_SERVER = ""
+POP3_SSL_PORT = ""
+POP3_LOGIN = ""
+POP3_PWD = ""
 
 
 class MailboxSettings:
@@ -28,6 +28,7 @@ class MailboxSettings:
         self.POP3server = POP3_SERVER
         self.login = POP3_LOGIN
         self.pwd = POP3_PWD
+        self.port = POP3_SSL_PORT
         
     def getPop3Server(self):
         return self.POP3server
@@ -37,3 +38,7 @@ class MailboxSettings:
     
     def getPop3Pwd(self):
         return self.pwd
+    
+    def getPop3SSLPort(self):
+        return self.port
+    
