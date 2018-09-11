@@ -57,6 +57,7 @@ def main():
                     eMailContentAlert = mailManager.prepareAlert(eMailInfo)
                     #Send the email
                     mailManager.sendEmail(eMailContentAlert,SmtpSettings())
+                    break
                 else:
                     logging.info ('No person found in picture %s',oneImage)                
     #Remove the emails once they have been processed
