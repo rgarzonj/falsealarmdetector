@@ -7,11 +7,11 @@ The code does the following:
 - If the picture contains a person, sends back the email with the picture.
 
 If you want to test it:
-- Send an email with a picture that includes a person to the following email address: 'incoming_at_lifteye.es'
+- Send an email with a picture that includes a person to the following email address: 'keivoxlab_at_gmail_dot_com'
 - If YOLOv1 detects a person in the picture, the email will be sent back to the FROM address.
 
 How to use this with your own WIFI camera (only for testing purposes):
-- Configure your camera to send emails to the address 'incoming_at_lifteye.es'.
+- Configure your camera to send emails to the address 'keivoxlab_at_gmail_dot_com'.
 - You will receive an email only when a person is found in the picture captured by your camera.
 
 ## How to use the code
@@ -30,7 +30,7 @@ Contact us at support_at_tamedbytes.com
  - Add other objects like cars or pets.
 
 ### Gmail camera configuration
-smtp.gmai.com
-TLS
+smtp.gmail.com 
+TLS 
 Authentication: yes
 Port 465

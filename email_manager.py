@@ -185,7 +185,11 @@ class EmailManager:
         M = self._connectPOP3SSLMailbox(mailboxSettings)
         attachments = []
         parserObj = parser.FeedParser()
-        for msg in M.retr(which+1)[1]:
+        print ('-----')
+        print (which)
+        print ('-----')
+#        for msg in M.retr(which+1)[1]:
+        for msg in M.retr(1)[1]:
             parserObj.feed(msg.decode('UTF-8') + '\n')
         root = parserObj.close()
         body = ""
