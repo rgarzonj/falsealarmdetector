@@ -61,7 +61,6 @@ def main():
                 else:
                     logging.info ('No person found in picture %s',oneImage)                
     #Remove the emails once they have been processed
-    print (range(numMails));
     #mailManager.multipleDeleteEmail(range(numMails),MailboxSettings())
     logging.info('************* END check_false_alarms.py ************')
 if __name__ == '__main__':
